@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:mh_app/loginScreen.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -20,7 +20,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home:LoginScreen(),
+
+
+
     );
   }
 }
