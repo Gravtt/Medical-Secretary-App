@@ -1,0 +1,46 @@
+version: '3'
+services:
+    web:
+       build:
+         context: ./www        
+       environment:
+         - ALLOW_OVERRIDE=true
+       ports:
+         - "80:80"
+       links:
+         - db
+       volumes:
+         - ./www/html:/var/www/html/ 
+       container_name: ${CLINIC_NAME}_WEB
+
+       hostname: WEB
+       networks:
+         redis:
+           aliases:
+             - WEB 
+
+
+    db:
+      build:
+        context: ./db
+      restart: always
+      volumes:
+        - ./db/mysql:/var/lib/mysql
+        - ./db/seed:/var/seed
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_USER: admin
+        MYSQL_PASSWORD: test
+        MYSQL_DATABASE: database
+      ports:
+        - "8889:3306"
+      container_name: ${CLINIC_NAME}_DB
+      
+      hostname: DB
+      networks:
+        redis:
+          aliases:
+            - DB
+
+networks:
+  redis:
