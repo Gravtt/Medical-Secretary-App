@@ -1,5 +1,6 @@
 package com.medsec.api;
 
+import com.medsec.entity.Callum;
 import com.medsec.entity.ChangePasswordRequestTemplate;
 import com.medsec.entity.User;
 import com.medsec.util.ArgumentException;
@@ -10,6 +11,8 @@ import com.medsec.util.DefaultRespondEntity;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.Instant;
+import java.time.LocalDate;
 
 /**
  * RESTful APIs for User Account.
@@ -40,13 +43,15 @@ public class UserAPI {
             // Invalid input
             return Response
                     .status(Response.Status.BAD_REQUEST)
-                    .entity(new DefaultRespondEntity(e.getMessage()))
+                    //.entity(new DefaultRespondEntity(e.getMessage()))
+                    .entity(new DefaultRespondEntity("Invalid input"))
                     .build();
 
         } catch (AuthenticationException e) {
             // Registered info not match
             return Response
                     .status(Response.Status.NOT_FOUND)
+                    //.entity(new DefaultRespondEntity("Registered info did not match"))
                     .entity(new DefaultRespondEntity(e.getMessage()))
                     .build();
 
@@ -54,6 +59,7 @@ public class UserAPI {
             // User has been activated
             return Response
                     .status(Response.Status.FORBIDDEN)
+                    //.entity(new DefaultRespondEntity("Catch all"))
                     .entity(new DefaultRespondEntity(e.getMessage()))
                     .build();
         }
@@ -94,7 +100,14 @@ public class UserAPI {
 
         }
     }
+    @POST
+    @Path("user/cal")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response testCallum(Callum c) {
 
+        return Response.ok(LocalDate.now()).build();
+    }
 
 
     private User verifyUserInformation(User u) throws ArgumentException, AuthenticationException, Exception {

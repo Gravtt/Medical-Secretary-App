@@ -140,7 +140,7 @@ public class SocketServerProcess implements Runnable {
         String street = (String) user.get("AddressLine1");
         String suburb = (String) user.get("Suburb");
         String state = (String) user.get("State");
-        Instant dob = Instant.parse((String) user.get("DOB"));
+        LocalDate dob = LocalDate.parse((String) user.get("DOB"));
         User patient = new User().id(id).surname(surname).firstname(firstName).email(email)
                 .street(street).suburb(suburb).state(state).dob(dob).role(UserRole.PATIENT);
         return patient;

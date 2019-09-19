@@ -46,6 +46,7 @@ public class AuthenticationAPI {
             // Issue a token for the user
             user = issueToken(user);
 
+            //db.updateTokenValidFromDate(user.getId());
             // Return the token on the response, omit some sensitive information
             User respondUser = user
                     .token_valid_from(null)
@@ -65,6 +66,15 @@ public class AuthenticationAPI {
                     .entity(new DefaultRespondEntity(e.getMessage()))
                     .build();
         }
+        catch (Exception e) {
+            // Catch all
+            return Response
+                    .status(Response.Status.FORBIDDEN)
+                    //.entity(new DefaultRespondEntity("Catch all"))
+                    .entity(new DefaultRespondEntity(e.getMessage()))
+                    .build();
+        }
+
     }
 
     @POST
