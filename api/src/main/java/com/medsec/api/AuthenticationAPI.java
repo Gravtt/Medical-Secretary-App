@@ -43,9 +43,13 @@ public class AuthenticationAPI {
             Database db = new Database();
             db.insertUserFcmToken(uid, token);
 
+
             // Issue a token for the user
             user = issueToken(user);
 
+            //TODO: change this to a transactional query instead of 2 connections
+            Database db2 = new Database();
+            db2.updateUser(user);
             //db.updateTokenValidFromDate(user.getId());
             // Return the token on the response, omit some sensitive information
             User respondUser = user

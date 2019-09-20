@@ -39,7 +39,10 @@
           email= #{email},
           street= #{street},
           suburb= #{suburb},
-          state= #{state}
+          state= #{state},
+          token= #{token},
+          token_expire_date =#{token_expire_date},
+          token_valid_from= #{token_valid_from}
         WHERE id= #{id}
     </update>
 

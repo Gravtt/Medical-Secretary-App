@@ -93,6 +93,7 @@ public class Token {
     public static User createTokenForUser(User u) {
         Token token = createToken(u.getId(), u.getRole());
         u.token_expire_date(token.exp).token(token.token);
+        u.token_valid_from(Instant.now());
         return u;
     }
 
