@@ -55,8 +55,13 @@ services:
       hostname: DB
       networks:
         backend:
+          ipv4_address: 10.5.0.6
           aliases:
             - DB
 
 networks:
   backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
