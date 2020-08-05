@@ -160,7 +160,7 @@ class LoginScreen extends StatelessWidget {
                   padding: EdgeInsets.all(12.0),
                   shape: StadiumBorder(),
                   onPressed: () {
-                    Navigator.pushNamed(context, 'home');
+                    Navigator.pushNamed(context, '/home');
                   },
                   child: Text(
                     'LOGIN',

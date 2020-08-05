@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/loginScreen.dart';
+import 'package:frontend/Home.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -8,6 +10,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      initialRoute: '/',
+      routes: { //route setting
+        '/': (context) => LoginScreen(),
+        '/home': (context) => DashboardPage() //you should have something like this.
+      },
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -20,11 +27,6 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      
-      home:LoginScreen(),
-
-
-
     );
   }
 }
